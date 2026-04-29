@@ -1,0 +1,404 @@
+/* =========================
+   RESET + GLOBAL
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: #0b0d12;
+    color: #e6e6e6;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* =========================
+   VARIABLES (LUXURY THEME)
+========================= */
+:root {
+    --gold: #d4af37;
+    --gold-soft: #f1c94b;
+    --dark: #0b0d12;
+    --card: #14171d;
+    --soft: #1c1f26;
+    --muted: #9ca3af;
+    --border: rgba(255,255,255,0.06);
+    --glass: rgba(255,255,255,0.04);
+    --shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* =========================
+   NAVBAR (GLASS + PREMIUM)
+========================= */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10,12,16,0.7);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    z-index: 1000;
+}
+
+.logo img {
+    height: 45px;
+}
+
+.navbar nav {
+    display: flex;
+    gap: 35px;
+}
+
+.navbar nav a {
+    text-decoration: none;
+    color: #cfcfcf;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    position: relative;
+    transition: 0.3s;
+}
+
+.navbar nav a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    left: 0;
+    bottom: -6px;
+    background: var(--gold);
+    transition: 0.3s;
+}
+
+.navbar nav a:hover {
+    color: #fff;
+}
+
+.navbar nav a:hover::after {
+    width: 100%;
+}
+
+/* =========================
+   HERO (HIGH-END LOOK)
+========================= */
+.hero {
+    height: 100vh;
+    background: url("assets/hero.jpg") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.7),
+        rgba(0,0,0,0.85)
+    );
+}
+
+.hero-content {
+    position: relative;
+    text-align: center;
+    max-width: 1100px;
+    padding: 20px;
+}
+
+.hero h1 {
+    font-size: 60px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+/* =========================
+   SEARCH BOX (LUXURY GLASS)
+========================= */
+.search-box {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    padding: 25px;
+    border-radius: 18px;
+    background: var(--glass);
+    backdrop-filter: blur(18px);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+}
+
+.search-box select,
+.search-box input {
+    padding: 13px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: #0f1117;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.search-box select:focus,
+.search-box input:focus {
+    border-color: var(--gold);
+}
+
+.search-box button {
+    grid-column: span 4;
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    background: var(--gold);
+    color: #000;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.search-box button:hover {
+    background: var(--gold-soft);
+    transform: translateY(-2px);
+}
+
+/* =========================
+   SECTIONS
+========================= */
+.section {
+    padding: 120px 7%;
+}
+
+.section h2 {
+    text-align: center;
+    font-size: 34px;
+    margin-bottom: 60px;
+}
+
+/* =========================
+   ACCORDION (PREMIUM CARD)
+========================= */
+.accordion-item {
+    background: var(--card);
+    border-radius: 12px;
+    margin-bottom: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: 0.3s;
+}
+
+.accordion-item:hover {
+    transform: translateY(-3px);
+}
+
+.accordion-header {
+    padding: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    color: var(--muted);
+    transition: 0.4s;
+    padding: 0 20px;
+}
+
+.accordion-item.active .accordion-body {
+    max-height: 200px;
+    padding: 15px 20px;
+}
+
+/* =========================
+   NEWSLETTER
+========================= */
+.newsletter {
+    background: linear-gradient(135deg, #12151b, #0b0d12);
+    padding: 80px 7%;
+    text-align: center;
+}
+
+.subscribe {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.subscribe input {
+    padding: 14px;
+    width: 320px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: #111;
+    color: white;
+}
+
+.subscribe button {
+    padding: 14px 22px;
+    border-radius: 8px;
+    border: none;
+    background: var(--gold);
+    cursor: pointer;
+}
+
+/* =========================
+   CONTACT
+========================= */
+.contact {
+    background: #0f1218;
+    padding: 120px 7%;
+}
+
+.contact-container {
+    display: flex;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.contact-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: var(--card);
+    padding: 16px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: white;
+    border: 1px solid var(--border);
+    transition: 0.3s;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    background: #1b1f27;
+}
+
+/* =========================
+   FLOATING BUTTONS
+========================= */
+.floating-contact,
+.floating-top {
+    position: fixed;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.floating-contact {
+    bottom: 95px;
+}
+
+.floating-top {
+    bottom: 30px;
+}
+
+.show {
+    opacity: 1;
+}
+
+/* =========================
+   MODAL
+========================= */
+.contact-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: #151922;
+    padding: 35px;
+    border-radius: 14px;
+    width: 90%;
+    max-width: 420px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+footer {
+    text-align: center;
+    padding: 30px;
+    background: #07090d;
+    color: #666;
+}
+
+/* =========================
+   MOBILE (POLISHED)
+========================= */
+@media (max-width: 900px) {
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .search-box {
+        grid-template-columns: 1fr;
+    }
+
+    .search-box button {
+        grid-column: span 1;
+    }
+
+    .navbar nav {
+        position: absolute;
+        top: 75px;
+        right: 0;
+        width: 240px;
+        background: #0e1015;
+        flex-direction: column;
+        padding: 20px;
+        display: none;
+        border-left: 1px solid var(--border);
+    }
+
+    .navbar nav.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+        font-size: 26px;
+    }
+
+    .contact-container {
+        flex-direction: column;
+    }
+
+    .subscribe {
+        flex-direction: column;
+    }
+
+    .subscribe input {
+        width: 100%;
+    }
+}
