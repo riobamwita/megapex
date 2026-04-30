@@ -380,18 +380,16 @@ footer {
     }
 
     .contact-grid {
-        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 🔥 2 columns */
         gap: 12px;
     }
 
     .contact-card {
-        flex-direction: row;
+        flex-direction: column; /* better fit for small cards */
         align-items: center;
+        text-align: center;
         padding: 14px;
-        border-radius: 12px;
-        height: auto;
-
-        font-size: 13px;
     }
 
     .contact-card span {
