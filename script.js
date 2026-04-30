@@ -34,20 +34,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const hasSeenIntro = localStorage.getItem("introPlayed");
 
     if (hasSeenIntro) {
-        intro.style.display = "none";
+        intro.remove();
         return;
     }
 
+    // show for a bit longer so animation completes nicely
     setTimeout(() => {
         intro.classList.add("hide");
-        localStorage.setItem("introPlayed", "true");
 
         setTimeout(() => {
-            intro.style.display = "none";
-        }, 1200);
-    }, 2500);
-});
+            intro.remove();
+            localStorage.setItem("introPlayed", "true");
+        }, 1000);
 
+    }, 3000);
+});
 
 // MOBILE MENU TOGGLE
 const toggle = document.getElementById("menu-toggle");
