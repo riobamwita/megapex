@@ -74,7 +74,7 @@ body {
     position: absolute;
     width: 0%;
     height: 2px;
-    background: #1e3c72;
+    background: var(--primary);
     left: 0;
     bottom: -5px;
     transition: 0.3s;
@@ -134,7 +134,7 @@ body {
 .search-box button {
     grid-column: span 4;
     padding: 14px;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -286,7 +286,7 @@ body {
     right: 20px;
     width: 50px;
     height: 50px;
-    background: #1e3c72;
+    background: var(--primary);
     color: #fff;
     border-radius: 50%;
     cursor: pointer;
@@ -344,7 +344,7 @@ body {
 footer {
     text-align: center;
     padding: 20px;
-    background: #0a1f44;
+    background: var(--bg-dark);
     color: #fff;
 }
 
@@ -378,7 +378,7 @@ footer {
 /* ABOUT PAGE */
 .about-page {
     min-height: 100vh;
-    background: linear-gradient(rgba(10,31,68,0.85), rgba(10,31,68,0.85)),
+    background: linear-gradient(rgba(8,28,21,0.85), rgba(8,28,21,0.85))
                 url("assets/background.jpg") no-repeat center/cover;
     display: flex;
     align-items: center;
@@ -461,7 +461,7 @@ footer {
     width: 100%;
     height: 350px;
     border-radius: 10px;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -668,18 +668,6 @@ footer {
         align-items: center;
         text-align: center;
     }
-
-.contact-card:hover {
-    transform: translateY(-5px);
-    background: #1e3c72;
-    color: #fff;
-}
-
-/* ICON */
-.contact-card img {
-    width: 28px;
-    height: 28px;
-}
 
 /* TEXT */
 .contact-card span {
@@ -983,7 +971,7 @@ h2 {
 
 .contact {
     padding: 80px 5%;
-    background: #0a1f44;
+    background: var(--bg-dark);
     color: #fff;
 }
 
@@ -1012,14 +1000,18 @@ h2 {
 /* GRID */
 .contact-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+
+    /* 👇 fixed smaller cards */
+    grid-template-columns: repeat(2, 160px);
+
+    justify-content: center; /* center the whole grid */
+    gap: 12px;
 }
 
 /* CARD */
 .contact-card {
-    padding: 20px;
-    border-radius: 12px;
+    padding: 12px;              /* ↓ smaller padding */
+    border-radius: 10px;
 
     background: rgba(255,255,255,0.05);
     backdrop-filter: blur(10px);
@@ -1028,9 +1020,12 @@ h2 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
 
     text-align: center;
+
+    /* 👇 subtle visible border */
+    border: 1px solid rgba(255,255,255,0.12);
 
     transition: 0.25s ease;
 }
@@ -1042,30 +1037,30 @@ h2 {
 
 /* HOVER */
 .contact-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
     background: #1e3c72;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
 }
 
 /* ICON */
 .contact-card img {
-    width: 30px;
-    height: 30px;
+    width: 22px;
+    height: 22px;
 }
 
-/* TEXT */
 .contact-card span {
+    font-size: 12px;
     font-weight: 600;
-    font-size: 14px;
 }
 
 .contact-card p {
-    font-size: 12px;
+    font-size: 10px;
     opacity: 0.8;
 }
 
 /* RIGHT SIDE */
 .contact-right {
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     padding: 30px;
     border-radius: 14px;
 }
@@ -1126,7 +1121,7 @@ h2 {
 @media (max-width: 480px) {
 
     .contact-grid {
-        grid-template-columns: 1fr 1fr; /* keep 2x layout */
+        grid-template-columns: repeat(2, 140px);
     }
 
     .contact-card {
@@ -1136,8 +1131,4 @@ h2 {
 
 .contact-card {
     border: 1px solid rgba(255,255,255,0.08);
-}
-
-.contact-card:hover {
-    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
 }
