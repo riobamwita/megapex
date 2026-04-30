@@ -1,0 +1,182 @@
+/* ================= ROOT (THEME) ================= */
+:root {
+    --primary: #1E7A3A;
+    --primary-dark: #14532D;
+    --primary-light: #2FAE5A;
+
+    --bg-dark: #081c15;
+    --bg-soft: #0f2a21;
+
+    --text-light: #e6f4ea;
+    --text-muted: #a8b3c7;
+
+    --accent: #d4af37;
+}
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BODY (KEY FIX) */
+html, body {
+    height: 100%;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden; /* prevents scrolling */
+    display: grid;
+    grid-template-rows: 0.45fr 0.55fr; /* split screen */
+
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-light);
+    line-height: 1.5;
+}
+
+/* BACK BUTTON */
+.back-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: rgba(255,255,255,0.08);
+    color: var(--text-light);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 10;
+    backdrop-filter: blur(8px);
+    transition: 0.25s ease;
+}
+
+.back-btn:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+/* ================= HERO ================= */
+.about-hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--bg-dark), var(--bg-soft));
+    padding: 30px 20px;
+}
+
+.about-hero-content {
+    max-width: 700px;
+    text-align: center;
+}
+
+.about-hero h1 {
+    font-size: 34px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.about-hero p {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+/* ================= REALTOR ================= */
+.realtor {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background: var(--bg-dark);
+    justify-content: center;
+}
+
+/* IMAGE */
+.realtor-image img {
+    width: 100%;
+    max-width: 180px; /* was 320px */
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+}
+
+/* TEXT */
+.realtor-info h2 {
+    font-size: 26px;
+    margin-bottom: 5px;
+}
+
+.role {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: var(--primary-light);
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.realtor-info p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+
+/* CONTACT */
+.contact-lines {
+    margin-top: 10px;
+}
+
+.contact-lines p {
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.contact-lines span {
+    font-weight: 600;
+    color: var(--primary-light);
+    margin-right: 6px;
+}
+
+/* SMALL DIVIDER */
+.contact-lines p::after {
+    content: "";
+    display: block;
+    width: 25px;
+    height: 2px;
+    background: var(--primary);
+    margin-top: 4px;
+    opacity: 0.4;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 900px) {
+    body {
+        display: block;
+        height: auto;
+        overflow: auto;
+    }
+
+    .about-hero,
+    .realtor {
+        padding: 80px 20px;
+    }
+
+    .realtor-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .realtor-image img {
+        margin: auto;
+    }
+}
+
+.realtor-grid {
+    max-width: 750px; /* tighter container */
+    margin: auto;
+    display: grid;
+    grid-template-columns: auto 1fr; /* KEY FIX */
+    gap: 30px; /* controlled spacing */
+    align-items: center;
+}
