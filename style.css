@@ -537,9 +537,29 @@ body {
 
 /* FOOTER */
 footer {
-    text-align: center;
-    padding: 20px;
     background: var(--bg-dark);
+    padding: 20px 40px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-content p {
+    font-size: 13px;
+}
+
+.designer-link {
+    font-size: 13px;
+    color: #9fb0c7;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.designer-link:hover {
+    color: var(--accent);
 }
 
 .slideshow {
@@ -861,10 +881,6 @@ footer {
 
     .logo img {
         height: 42px;
-    }
-
-    .navbar nav {
-        display: none;
     }
 
     .menu-toggle {
@@ -1315,4 +1331,11 @@ footer {
     .ad-strip img {
         height: 220px;
     }
+
+    .footer-content {
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+}
+
 }
