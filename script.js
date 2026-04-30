@@ -154,3 +154,26 @@ if (slides.length > 0) {
         slides[index].classList.add("active");
     }, 4000);
 }
+
+// AD STRIP SCROLL ANIMATION
+const adStrip = document.getElementById("adStrip");
+const adImages = document.querySelectorAll("#adStrip img");
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+
+            adImages.forEach((img, index) => {
+                setTimeout(() => {
+                    img.classList.add("show");
+                }, index * 200); // stagger effect (1 by 1)
+            });
+
+            observer.unobserve(adStrip); // run once only
+        }
+    });
+}, {
+    threshold: 0.4
+});
+
+observer.observe(adStrip);
