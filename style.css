@@ -659,24 +659,22 @@ footer {
 
 /* GRID */
 .contact-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-}
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
 
 /* CARD */
 .contact-card {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 18px;
-    border-radius: 12px;
-    text-decoration: none;
-    background: #f7f9fc;
-    transition: all 0.25s ease;
-    color: #222;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
+        aspect-ratio: 1 / 1; /* 🔥 key fix */
+        padding: 12px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
 
 .contact-card:hover {
     transform: translateY(-5px);
@@ -906,11 +904,6 @@ h2 {
 
     .contact-card p {
         font-size: 11px;
-    }
-
-    /* Optional: make first card wide */
-    .contact-card:nth-child(1) {
-        grid-column: span 2;
     }
 
     .contact-right {
