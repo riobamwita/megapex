@@ -97,44 +97,48 @@ body {
 
 /* HERO */
 .hero {
-    height: 100vh;
     position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
 }
 
 .slideshow {
     position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
+    z-index: 0;
 }
 
 .slideshow img {
     position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+
     opacity: 0;
-    transition: 1.5s ease;
+    transition: opacity 1.2s ease-in-out;
 }
 
 .slideshow img.active {
     opacity: 1;
 }
-
 .overlay {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: rgba(0,0,0,0.55);
+    z-index: 1;
 }
 
 .hero-content {
     position: relative;
     z-index: 2;
-    max-width: 900px;
 }
 
 .hero h1 {
@@ -560,13 +564,6 @@ footer {
 
 .designer-link:hover {
     color: var(--accent);
-}
-
-.slideshow {
-    position: absolute;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
 }
 
 /* PROPERTIES GRID */
