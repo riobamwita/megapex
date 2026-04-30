@@ -1338,4 +1338,28 @@ footer {
     text-align: center;
 }
 
+.navbar nav {
+    position: absolute;
+    top: 70px;
+    right: 16px;
+
+    background: rgba(8, 28, 21, 0.95);
+    backdrop-filter: blur(10px);
+
+    flex-direction: column;
+    align-items: flex-start;
+
+    width: 200px;
+    padding: 12px;
+    border-radius: 10px;
+
+    display: none; /* hidden by default */
+    gap: 12px;
+}
+
+/* when active (opened) */
+.navbar nav.active {
+    display: flex;
+}
+
 }
