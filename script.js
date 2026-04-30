@@ -318,3 +318,20 @@ document.querySelectorAll(".like-icon").forEach(icon => {
         icon.classList.toggle("liked");
     });
 });
+
+// Coming Soon popup
+const popup = document.getElementById("comingSoonPopup");
+
+// Select all featured cards
+const featuredCards = document.querySelectorAll(".featured-card");
+
+featuredCards.forEach(card => {
+    card.addEventListener("click", () => {
+        popup.classList.add("active");
+
+        // hide after 2 seconds
+        setTimeout(() => {
+            popup.classList.remove("active");
+        }, 2000);
+    });
+});
