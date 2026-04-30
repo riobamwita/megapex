@@ -60,10 +60,12 @@ body {
     top: 0;
     background: rgba(8,28,21,0.85);
     backdrop-filter: blur(10px);
+
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 15px 60px;
+    justify-content: space-between;
+
+    padding: 15px 40px;
     z-index: 1000;
 }
 
@@ -171,6 +173,12 @@ body {
     color: #fff;
     font-weight: 600;
     cursor: pointer;
+}
+
+.search-box button {
+    grid-column: 1 / -1;   /* still occupies full grid row */
+    width: 200px;          /* control button size */
+    justify-self: center;  /* centers it in the grid */
 }
 
 .search-box button:hover {
@@ -464,6 +472,28 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+    transition: 0.3s ease;
+}
+
+/* positions */
+.floating-contact {
+    bottom: 90px;
+}
+
+.floating-top {
+    bottom: 25px;
+}
+
+/* visible state */
+.floating-contact.show,
+.floating-top.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
 }
 
 /* MODAL */
@@ -763,4 +793,303 @@ footer {
 .featured-icons img:hover {
     transform: scale(1.2);
     opacity: 1;
+}
+
+.nav-phone {
+    color: var(--text-light);
+    font-weight: 600;
+    margin-left: 20px;
+    white-space: nowrap;
+    text-decoration: none; /* removes underline */
+}
+
+/* DESKTOP DEFAULT */
+.menu-toggle {
+    display: none;
+}
+
+
+
+@media (max-width: 768px) {
+
+    /* show hamburger on mobile */
+    .menu-toggle {
+        display: block;
+        font-size: 26px;
+        cursor: pointer;
+    }
+
+    /* hide phone on mobile (optional) */
+    .nav-phone {
+        display: none;
+    }
+
+    /* optional: collapse nav */
+    .navbar nav {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+
+    html, body {
+        font-size: 14px;
+        overflow-x: hidden;
+    }
+
+    body {
+        transform: none;
+        width: 100%;
+    }
+
+    /* ================= NAVBAR ================= */
+    .navbar {
+        padding: 12px 16px;
+    }
+
+    .logo img {
+        height: 42px;
+    }
+
+    .navbar nav {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+        font-size: 28px;
+    }
+
+    .nav-phone {
+        display: none;
+    }
+
+    /* ================= HERO ================= */
+    .hero h1 {
+        font-size: 28px;
+        padding: 0 10px;
+        line-height: 1.3;
+    }
+
+    .hero-content {
+        padding: 0 12px;
+    }
+
+    /* ================= SEARCH (FIXED CENTER BUTTON) ================= */
+    .search-box {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        padding: 16px;
+        border-radius: 14px;
+        position: relative;
+    }
+
+    .search-box input,
+    .search-box select {
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    /* BUTTON FIXED TO CENTER FLOAT */
+    .search-box button {
+        grid-column: 1 / -1;
+        width: 160px;
+        justify-self: center;
+
+        margin-top: 10px;
+
+        border-radius: 50px;
+        padding: 12px 18px;
+
+        position: relative;
+        z-index: 2;
+    }
+
+    /* ================= SECTIONS ================= */
+    .section {
+        padding: 30px 16px;
+    }
+
+    .section h2 {
+        font-size: 24px;
+        margin-bottom: 25px;
+    }
+
+    /* ================= PROPERTIES (2 COLUMN GRID INSTEAD OF 1) ================= */
+    .properties-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    .property-card {
+        height: 200px;
+    }
+
+    .property-overlay h3 {
+        font-size: 16px;
+    }
+
+    /* ================= FEATURED (2 COLUMN GRID) ================= */
+    .featured-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    .featured-card {
+        height: 210px;
+    }
+
+    .featured-info h3 {
+        font-size: 13px;
+    }
+
+    .featured-info p {
+        font-size: 12px;
+    }
+
+    /* icons */
+    .featured-icons {
+        gap: 6px;
+        padding: 6px 8px;
+        border-radius: 12px;
+    }
+
+    .featured-icons img {
+        width: 18px;
+        height: 18px;
+    }
+
+    /* ================= ACCORDION ================= */
+    .accordion-header {
+        font-size: 14px;
+    }
+
+    .accordion-body {
+        font-size: 13px;
+    }
+
+    /* ================= NEWSLETTER ================= */
+    .newsletter {
+        padding: 50px 16px;
+    }
+
+    .newsletter h2 {
+        font-size: 24px;
+    }
+
+    .subscribe {
+        flex-direction: column;
+        gap: 10px;
+        padding: 12px;
+    }
+
+    .subscribe input,
+    .subscribe button {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    /* ================= CONTACT (2 COLUMN GRID LIKE DESKTOP MINI VERSION) ================= */
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .contact-card {
+        padding: 14px;
+    }
+
+    .contact-left h2 {
+        font-size: 24px;
+    }
+
+    .contact-right {
+        padding: 20px;
+        text-align: center;
+    }
+
+    /* ================= ADS (2 COLUMN GRID FEEL) ================= */
+    .ad-strip {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .ad-strip img {
+        width: 100%;
+        height: 280px;
+    }
+
+    /* ================= FLOATING BUTTONS ================= */
+    .floating-contact,
+    .floating-top {
+        width: 46px;
+        height: 46px;
+        right: 16px;
+    }
+
+    .floating-contact {
+        bottom: 85px;
+    }
+
+    .floating-top {
+        bottom: 20px;
+    }
+
+    /* ================= MORE BUTTON ================= */
+    .more-btn {
+        width: 100%;
+        max-width: 260px;
+    }
+
+    .featured-card {
+    position: relative;
+    height: 240px;
+}
+
+/* INFO LEFT SIDE */
+.featured-info {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    max-width: 65%;
+}
+
+.featured-info h3 {
+    font-size: 14px;
+    text-align: left;
+    margin-bottom: 4px;
+}
+
+.featured-info p {
+    font-size: 12px;
+    text-align: left;
+}
+
+/* ICONS RIGHT SIDE */
+.featured-icons {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+
+    padding: 6px 8px;
+    border-radius: 12px;
+}
+
 }

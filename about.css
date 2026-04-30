@@ -149,26 +149,166 @@ body {
     opacity: 0.4;
 }
 
-/* ================= MOBILE ================= */
+/* ================= MOBILE (UPGRADED PREMIUM LAYOUT) ================= */
 @media (max-width: 900px) {
+
     body {
         display: block;
         height: auto;
-        overflow: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
+        background: var(--bg-dark);
     }
 
-    .about-hero,
+    /* BACK BUTTON */
+    .back-btn {
+        position: fixed;
+        top: 14px;
+        left: 14px;
+        padding: 7px 12px;
+        font-size: 13px;
+        z-index: 100;
+        border-radius: 10px;
+        backdrop-filter: blur(10px);
+    }
+
+    /* ================= HERO ================= */
+    .about-hero {
+        padding: 90px 18px 40px;
+        text-align: center;
+        position: relative;
+    }
+
+    /* subtle glow background effect */
+    .about-hero::before {
+        content: "";
+        position: absolute;
+        top: -100px;
+        left: -100px;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+        opacity: 0.15;
+        filter: blur(30px);
+    }
+
+    .about-hero-content {
+        max-width: 100%;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+    }
+
+    .about-hero h1 {
+        font-size: 28px;
+        letter-spacing: 0.5px;
+        margin-bottom: 12px;
+    }
+
+    .about-hero p {
+        font-size: 13px;
+        line-height: 1.6;
+        padding: 0 6px;
+    }
+
+    /* ================= LOCATION CARD ================= */
+    .company-location {
+        justify-content: center;
+        margin-top: 18px;
+        padding: 10px 14px;
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 12px;
+        background: rgba(255,255,255,0.03);
+        backdrop-filter: blur(10px);
+    }
+
+    /* ================= REALTOR SECTION ================= */
     .realtor {
-        padding: 80px 20px;
+        padding: 40px 18px 80px;
     }
 
     .realtor-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 22px;
+        max-width: 100%;
+    }
+
+    /* IMAGE (HERO STYLE CARD) */
+    .realtor-image {
+        position: relative;
     }
 
     .realtor-image img {
-        margin: auto;
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 22px;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        border: 2px solid rgba(255,255,255,0.08);
+    }
+
+    /* TEXT CARD */
+    .realtor-info {
+        text-align: center;
+        background: rgba(255,255,255,0.03);
+        padding: 18px 16px;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 340px;
+        border: 1px solid rgba(255,255,255,0.06);
+        backdrop-filter: blur(10px);
+    }
+
+    .realtor-info h2 {
+        font-size: 22px;
+        margin-bottom: 4px;
+    }
+
+    .role {
+        font-size: 10px;
+        letter-spacing: 2px;
+        margin-bottom: 12px;
+    }
+
+    .realtor-info p {
+        font-size: 13px;
+        line-height: 1.5;
+        margin-bottom: 14px;
+    }
+
+    /* CONTACT BLOCK -> CARD STYLE */
+    .contact-lines {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .contact-lines p {
+        font-size: 13px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        background: rgba(255,255,255,0.03);
+        border: 1px solid rgba(255,255,255,0.06);
+        margin: 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .contact-lines p span {
+        display: block;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--primary-light);
+        margin-bottom: 3px;
+    }
+
+    /* REMOVE OLD DIVIDER EFFECT ON MOBILE */
+    .contact-lines p::after {
+        display: none;
     }
 }
 
@@ -196,4 +336,103 @@ body {
     width: 18px;
     height: 18px;
     opacity: 0.9;
+}
+
+@media (max-width: 900px) {
+
+    /* ================= REALTOR (CLASSIC STYLE) ================= */
+    .realtor {
+        padding: 60px 20px 90px;
+        background: var(--bg-dark);
+    }
+
+    .realtor-grid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 420px;
+        margin: 0 auto;
+        gap: 28px;
+        text-align: center;
+    }
+
+    /* IMAGE — clean framed portrait */
+    .realtor-image img {
+        width: 190px;
+        height: 190px;
+        object-fit: cover;
+        border-radius: 14px;
+        box-shadow: 0 18px 40px rgba(0,0,0,0.55);
+        border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    /* TEXT AREA */
+    .realtor-info {
+        padding: 0;
+        background: transparent;
+        border: none;
+        backdrop-filter: none;
+    }
+
+    .realtor-info h2 {
+        font-size: 24px;
+        font-weight: 500;
+        letter-spacing: 0.3px;
+        margin-bottom: 6px;
+    }
+
+    .role {
+        font-size: 11px;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: var(--primary-light);
+        margin-bottom: 14px;
+    }
+
+    .realtor-info p {
+        font-size: 14px;
+        color: var(--text-muted);
+        line-height: 1.7;
+        margin-bottom: 22px;
+        padding: 0 6px;
+    }
+
+    /* CONTACT SECTION — clean list style */
+    .contact-lines {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 10px;
+    }
+
+    .contact-lines p {
+        font-size: 14px;
+        margin: 0;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        text-align: center;
+    }
+
+    .contact-lines p:last-child {
+        border-bottom: none;
+    }
+
+    .contact-lines p span {
+        display: inline-block;
+        font-size: 12px;
+        color: var(--primary-light);
+        margin-right: 6px;
+        letter-spacing: 1px;
+    }
+
+}
+
+.contact-lines a {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.contact-lines a:hover {
+    color: var(--primary-light);
 }

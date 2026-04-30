@@ -68,7 +68,6 @@ if (toggle && nav) {
     });
 }
 
-
 // CONTACT MODAL
 let modal = null;
 
@@ -96,20 +95,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // SCROLL BUTTONS
+const contactSection = document.querySelector(".contact");
 const scrollBtn = document.getElementById("scrollTop");
 const contactBtn = document.getElementById("openContact");
 
-window.addEventListener("scroll", () => {
-    if (scrollBtn && contactBtn) {
-        if (window.scrollY > 300) {
-            scrollBtn.classList.add("show");
-            contactBtn.classList.add("show");
+const contactObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            scrollBtn?.classList.add("show");
+            contactBtn?.classList.add("show");
         } else {
-            scrollBtn.classList.remove("show");
-            contactBtn.classList.remove("show");
+            scrollBtn?.classList.remove("show");
+            contactBtn?.classList.remove("show");
         }
-    }
+    });
+}, {
+    threshold: 0.3
 });
+
+if (contactSection) {
+    contactObserver.observe(contactSection);
+}
 
 // SCROLL TO TOP
 if (scrollBtn) {
