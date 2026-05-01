@@ -84,7 +84,7 @@ body {
     font-size: 14px;
     color: var(--text-muted);
     margin-bottom: 8px;
-    text-align: justify;
+    text-align: left;
 }
 
 /* ================= REALTOR ================= */
