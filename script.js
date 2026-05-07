@@ -1,9 +1,24 @@
-// NAVIGATION SCROLL
+// ================= UTIL: CHECK IF FILTERED =================
+function isFiltered() {
+    const inputs = document.querySelectorAll(".search-box select, .search-box input");
+
+    let hasValue = false;
+
+    inputs.forEach(el => {
+        if (el.value && el.value.trim() !== "") {
+            hasValue = true;
+        }
+    });
+
+    return hasValue;
+}
+
+
+// ================= NAVIGATION SCROLL =================
 document.querySelectorAll('.navbar nav a').forEach(link => {
     link.addEventListener('click', function (e) {
         const text = this.textContent.trim().toLowerCase();
 
-        // About goes to separate page
         if (text === "about us") return;
 
         e.preventDefault();
@@ -17,28 +32,22 @@ document.querySelectorAll('.navbar nav a').forEach(link => {
         const target = document.querySelector(targetId);
 
         if (target) {
-            target.scrollIntoView({
-                behavior: "smooth"
-            });
+            target.scrollIntoView({ behavior: "smooth" });
         }
     });
 });
 
 
-// INTRO SCREEN
+// ================= INTRO SCREEN =================
 document.addEventListener("DOMContentLoaded", () => {
     const intro = document.getElementById("intro-screen");
-
     if (!intro) return;
 
-    const hasSeenIntro = localStorage.getItem("introPlayed");
-
-    if (hasSeenIntro) {
+    if (localStorage.getItem("introPlayed")) {
         intro.remove();
         return;
     }
 
-    // show for a bit longer so animation completes nicely
     setTimeout(() => {
         intro.classList.add("hide");
 
@@ -50,7 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 3000);
 });
 
-// MOBILE MENU TOGGLE
+
+// ================= MOBILE MENU =================
 const toggle = document.getElementById("menu-toggle");
 const nav = document.querySelector(".navbar nav");
 
@@ -59,46 +69,30 @@ if (toggle && nav) {
         nav.classList.toggle("active");
         toggle.textContent = nav.classList.contains("active") ? "✖" : "☰";
     });
-
-    // CLOSE MENU WHEN LINK IS CLICKED
-    document.querySelectorAll(".navbar nav a").forEach(link => {
-        link.addEventListener("click", () => {
-            nav.classList.remove("active");
-            toggle.textContent = "☰";
-        });
-    });
 }
 
-// CONTACT MODAL
-let modal = null;
 
+// ================= CONTACT MODAL =================
 document.addEventListener("DOMContentLoaded", () => {
     const openBtn = document.getElementById("openContact");
     const closeBtn = document.getElementById("closeContact");
-    modal = document.getElementById("contactModal");
+    const modal = document.getElementById("contactModal");
 
     if (!openBtn || !closeBtn || !modal) return;
 
-    openBtn.addEventListener("click", () => {
-        modal.classList.add("active");
-    });
-
-    closeBtn.addEventListener("click", () => {
-        modal.classList.remove("active");
-    });
+    openBtn.addEventListener("click", () => modal.classList.add("active"));
+    closeBtn.addEventListener("click", () => modal.classList.remove("active"));
 
     window.addEventListener("click", (e) => {
-        if (e.target === modal) {
-            modal.classList.remove("active");
-        }
+        if (e.target === modal) modal.classList.remove("active");
     });
 });
 
 
-// SCROLL BUTTONS
-const contactSection = document.querySelector(".contact");
+// ================= SCROLL BUTTONS =================
 const scrollBtn = document.getElementById("scrollTop");
 const contactBtn = document.getElementById("openContact");
+const contactSection = document.querySelector(".contact");
 
 const contactObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -110,38 +104,24 @@ const contactObserver = new IntersectionObserver((entries) => {
             contactBtn?.classList.remove("show");
         }
     });
-}, {
-    threshold: 0.3
-});
+}, { threshold: 0.3 });
 
-if (contactSection) {
-    contactObserver.observe(contactSection);
-}
+if (contactSection) contactObserver.observe(contactSection);
 
-// SCROLL TO TOP
 if (scrollBtn) {
     scrollBtn.onclick = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+        window.scrollTo({ top: 0, behavior: "smooth" });
     };
 }
 
 
-// ACCORDION
-const items = document.querySelectorAll(".accordion-item");
-
-items.forEach(item => {
+// ================= ACCORDION =================
+document.querySelectorAll(".accordion-item").forEach(item => {
     const header = item.querySelector(".accordion-header");
 
-    if (!header) return;
-
-    header.addEventListener("click", () => {
-        items.forEach(i => {
-            if (i !== item) {
-                i.classList.remove("active");
-            }
+    header?.addEventListener("click", () => {
+        document.querySelectorAll(".accordion-item").forEach(i => {
+            if (i !== item) i.classList.remove("active");
         });
 
         item.classList.toggle("active");
@@ -149,10 +129,10 @@ items.forEach(item => {
 });
 
 
-// HERO SLIDESHOW
+// ================= HERO SLIDESHOW =================
 const slides = document.querySelectorAll(".slideshow img");
 
-if (slides.length > 0) {
+if (slides.length) {
     let index = 0;
 
     setInterval(() => {
@@ -162,30 +142,28 @@ if (slides.length > 0) {
     }, 4000);
 }
 
-// AD STRIP SCROLL ANIMATION
+
+// ================= AD STRIP =================
 const adStrip = document.getElementById("adStrip");
 const adImages = document.querySelectorAll("#adStrip img");
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
+if (adStrip) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                adImages.forEach((img, i) => {
+                    setTimeout(() => img.classList.add("show"), i * 200);
+                });
+                observer.unobserve(adStrip);
+            }
+        });
+    }, { threshold: 0.4 });
 
-            adImages.forEach((img, index) => {
-                setTimeout(() => {
-                    img.classList.add("show");
-                }, index * 200); // stagger effect (1 by 1)
-            });
+    observer.observe(adStrip);
+}
 
-            observer.unobserve(adStrip); // run once only
-        }
-    });
-}, {
-    threshold: 0.4
-});
 
-observer.observe(adStrip);
-
-// ================= SEARCH FUNCTION =================
+// ================= SEARCH FILTER =================
 function runFilter() {
 
     const type = document.getElementById("typeFilter").value.toLowerCase();
@@ -197,58 +175,35 @@ function runFilter() {
     const keyword = document.getElementById("keyword").value.toLowerCase();
 
     const cards = document.querySelectorAll(".featured-card");
-
     let visibleCount = 0;
 
     cards.forEach(card => {
 
-        const cardType = card.dataset.type;
-        const cardCategory = card.dataset.category;
-        const cardLocation = card.dataset.location;
-        const cardBedrooms = card.dataset.bedrooms;
-        const cardPrice = parseInt(card.dataset.price);
-        const cardText = card.innerText.toLowerCase();
+        const show =
+            (!type || card.dataset.type === type) &&
+            (!category || card.dataset.category === category) &&
+            (!location || card.dataset.location === location) &&
+            (!bedrooms || card.dataset.bedrooms === bedrooms) &&
+            (!minPrice || parseInt(card.dataset.price) >= parseInt(minPrice)) &&
+            (!maxPrice || parseInt(card.dataset.price) <= parseInt(maxPrice)) &&
+            (!keyword || card.innerText.toLowerCase().includes(keyword));
 
-        let show = true;
-
-        if (type && cardType !== type) show = false;
-        if (category && cardCategory !== category) show = false;
-        if (location && cardLocation !== location) show = false;
-        if (bedrooms && cardBedrooms !== bedrooms) show = false;
-
-        if (minPrice && cardPrice < parseInt(minPrice)) show = false;
-        if (maxPrice && cardPrice > parseInt(maxPrice)) show = false;
-
-        if (keyword && !cardText.includes(keyword)) show = false;
-
-        if (show) {
-            card.style.display = "block";
-            visibleCount++;
-        } else {
-            card.style.display = "none";
-        }
-
+        card.style.display = show ? "block" : "none";
+        if (show) visibleCount++;
     });
 
-    // scroll to results
-    document.querySelector(".featured-section").scrollIntoView({
-        behavior: "smooth"
-    });
+    document.querySelector(".featured-section")
+        .scrollIntoView({ behavior: "smooth" });
 
-    // show active filters
     showFilterBar(type, category, location, bedrooms, visibleCount);
 }
 
 
-// ================= BUTTON CLICK =================
+// ================= FILTER EVENTS =================
 document.getElementById("searchBtn").addEventListener("click", runFilter);
 
-
-// ================= LIVE FILTER (AUTO) =================
 document.querySelectorAll(".search-box select, .search-box input")
-.forEach(el => {
-    el.addEventListener("input", runFilter);
-});
+    .forEach(el => el.addEventListener("input", runFilter));
 
 
 // ================= FILTER BAR =================
@@ -263,8 +218,7 @@ function showFilterBar(type, category, location, bedrooms, count) {
     if (location) filters.push(`Location: ${location}`);
     if (bedrooms) filters.push(`Bedrooms: ${bedrooms}`);
 
-    // nothing selected → hide bar
-    if (filters.length === 0) {
+    if (!filters.length) {
         container.innerHTML = "";
         return;
     }
@@ -276,193 +230,101 @@ function showFilterBar(type, category, location, bedrooms, count) {
         </div>
     `;
 
-    // CLEAR FILTERS BUTTON
-    document.getElementById("clearFilters").addEventListener("click", () => {
-
-    resetAllFilters();
-
-});
+    document.getElementById("clearFilters").addEventListener("click", resetAllFilters);
 }
 
+
+// ================= RESET FILTERS =================
+function resetAllFilters() {
+
+    document.querySelectorAll(".search-box select, .search-box input")
+        .forEach(el => el.value = "");
+
+    document.querySelectorAll(".featured-card")
+        .forEach(card => card.style.display = "block");
+
+    document.getElementById("activeFilters").innerHTML = "";
+}
+
+
+// ================= COMING SOON =================
 function showComingSoon() {
     const popup = document.getElementById("comingSoonPopup");
 
     popup.classList.add("active");
 
-    setTimeout(() => {
-        popup.classList.remove("active");
-    }, 2000); // disappears after 2 seconds
+    setTimeout(() => popup.classList.remove("active"), 2000);
 }
 
-// TARGET BUTTONS
-document.querySelectorAll(
-    ".view-btn, .more-btn, .more-properties button, .subscribe button"
-).forEach(btn => {
+
+// ================= LOCATION CARDS =================
+document.querySelectorAll(".location-card").forEach(card => {
+    card.addEventListener("click", () => {
+
+        const location = card.dataset.location;
+
+        document.getElementById("featured")
+            .scrollIntoView({ behavior: "smooth" });
+
+        document.querySelectorAll(".featured-card").forEach(p => {
+            p.style.display = (p.dataset.location === location) ? "block" : "none";
+        });
+
+        document.querySelectorAll(".search-box select, .search-box input")
+            .forEach(el => el.value = "");
+
+        document.getElementById("activeFilters").innerHTML = "";
+    });
+});
+
+
+// ================= MORE BUTTONS (FIXED LOGIC) =================
+
+// 1. MORE LOCATIONS → ALWAYS COMING SOON
+document.querySelectorAll(".properties-section .more-btn").forEach(btn => {
     btn.addEventListener("click", (e) => {
         e.preventDefault();
         showComingSoon();
     });
 });
 
+
+// 2. VIEW MORE FEATURED → ONLY IF NOT FILTERED
+document.querySelectorAll(".featured-section .more-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        if (isFiltered()) {
+            resetAllFilters();
+            document.getElementById("featured")
+                .scrollIntoView({ behavior: "smooth" });
+        } else {
+            showComingSoon();
+        }
+    });
+});
+
+
+// ================= LIKE ICONS =================
 document.querySelectorAll(".like-icon").forEach(icon => {
     icon.addEventListener("click", () => {
         icon.classList.toggle("liked");
     });
 });
 
-// Coming Soon popup
-const popup = document.getElementById("comingSoonPopup");
 
-// Select all featured cards
-const featuredCards = document.querySelectorAll(".featured-card");
-
+// ================= FEATURED CARD NAVIGATION =================
 document.querySelectorAll(".featured-card").forEach(card => {
     card.addEventListener("click", (e) => {
 
-        // ignore icon clicks
         if (e.target.closest(".featured-icons")) return;
 
         const link = card.dataset.link;
 
-        // ONLY navigate if link exists
         if (link) {
-    window.location.href = link;
-} else {
-    showComingSoon();
-}
-
-        // ❌ NO coming soon for empty cards anymore
-    });
-});
-
-// FADE-IN ON LOAD
-const elements = document.querySelectorAll(".fade-in");
-
-window.addEventListener("load", () => {
-    elements.forEach((el, i) => {
-        setTimeout(() => {
-            el.classList.add("show");
-        }, i * 150);
-    });
-});
-
-
-// IMAGE LIGHTBOX
-const images = document.querySelectorAll(".gallery img");
-
-const lightbox = document.createElement("div");
-lightbox.classList.add("lightbox");
-
-const lightImg = document.createElement("img");
-
-lightbox.appendChild(lightImg);
-document.body.appendChild(lightbox);
-
-images.forEach(img => {
-    img.addEventListener("click", () => {
-        lightbox.classList.add("active");
-        lightImg.src = img.src;
-    });
-});
-
-lightbox.addEventListener("click", () => {
-    lightbox.classList.remove("active");
-});
-
-
-// SMOOTH SCROLL (robust)
-document.querySelectorAll('a[href]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-
-        const href = this.getAttribute('href');
-
-        // ignore empty or placeholder links
-        if (!href || href === '#') return;
-
-        // allow full page navigation (external links, tel, mail, real pages)
-        if (
-            href.startsWith('http') ||
-            href.startsWith('mailto:') ||
-            href.startsWith('tel:') ||
-            href.endsWith('.html')
-        ) {
-            return;
+            window.location.href = link;
+        } else {
+            showComingSoon();
         }
-
-        // only handle in-page anchors (#section)
-        if (href.startsWith('#')) {
-            const target = document.querySelector(href);
-
-            if (!target) return;
-
-            e.preventDefault();
-
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    const locationCards = document.querySelectorAll(".location-card");
-    const propertyCards = document.querySelectorAll(".featured-section .featured-card");
-
-    locationCards.forEach(card => {
-        card.addEventListener("click", () => {
-
-            const location = card.dataset.location;
-
-            // scroll to featured section
-            document.getElementById("featured").scrollIntoView({ behavior: "smooth" });
-
-            propertyCards.forEach(property => {
-                const propLocation = property.dataset.location;
-
-                if (propLocation === location) {
-                    property.style.display = "block";
-                } else {
-                    property.style.display = "none";
-                }
-            });
-
-            // OPTIONAL: clear search filters UI so they don't conflict
-            document.querySelectorAll(".search-box select, .search-box input")
-                .forEach(el => el.value = "");
-
-            document.getElementById("activeFilters").innerHTML = "";
-        });
-    });
-
-});
-
-function resetAllFilters() {
-
-    // reset search inputs
-    document.querySelectorAll(".search-box select, .search-box input")
-        .forEach(el => el.value = "");
-
-    // show all featured cards
-    document.querySelectorAll(".featured-section .featured-card")
-        .forEach(card => {
-            card.style.display = "block";
-        });
-
-    // clear filter bar
-    document.getElementById("activeFilters").innerHTML = "";
-}
-
-// VIEW MORE BUTTON (REPLACE your current handler)
-document.querySelectorAll(".more-btn").forEach(btn => {
-    btn.addEventListener("click", (e) => {
-        e.preventDefault();
-
-        resetAllFilters();
-
-        document.getElementById("featured").scrollIntoView({
-            behavior: "smooth"
-        });
     });
 });
