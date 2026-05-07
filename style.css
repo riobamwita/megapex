@@ -1366,3 +1366,21 @@ footer {
 .hidden-location.show {
     display: block;
 }
+
+/* ONLY desktop: hide the 4th card */
+@media (min-width: 769px) {
+    .hidden-location {
+        display: none;
+    }
+
+    .hidden-location.show {
+        display: block;
+    }
+}
+
+/* phones: always show it */
+@media (max-width: 768px) {
+    .hidden-location {
+        display: block !important;
+    }
+}
