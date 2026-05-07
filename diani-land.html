@@ -3,10 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>1 Acre Land - Matuu</title>
 
-<link rel="stylesheet" href="matuu.css">
+<title>2 Hectares Land - Diani</title>
+
+<link rel="stylesheet" href="diani-land.css">
+
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
@@ -14,24 +17,31 @@
 
 <!-- HERO -->
 <section class="hero">
-    <img src="assets/matuu.jpeg" class="hero-img">
+
+    <img src="assets/diani.jpeg" class="hero-img">
 
     <div class="overlay"></div>
 
     <button class="back-btn" onclick="goBack()">← Back</button>
 
     <div class="hero-content">
-        <h1>Land – Matuu</h1>
-        <p class="price">Ksh 3,800,000</p>
+
+        <h1>Land – Diani</h1>
+
+        <p class="price">Ksh 7,000,000</p>
 
         <div class="hero-meta">
-            <span>📍 Matuu</span>
-            <span>📐 1 Hectare</span>
-            <span>🚧 Ready for Development</span>
+            <span>📍 Diani</span>
+            <span>📐 2 Hectares</span>
+            <span>🌴 Prime Coastal Land</span>
         </div>
 
-        <a href="https://wa.me/254740531831" class="btn">Book Viewing</a>
+        <a href="https://wa.me/254740531831" class="btn">
+            Book Viewing
+        </a>
+
     </div>
+
 </section>
 
 <!-- MAIN -->
@@ -39,7 +49,9 @@
 
     <!-- GALLERY -->
     <div class="gallery">
-        <img src="assets/matuu.jpeg">
+
+        <img src="assets/diani.jpeg">
+
     </div>
 
     <!-- DETAILS -->
@@ -47,33 +59,41 @@
 
         <div class="card">
             <h3>Property Overview</h3>
+
             <p>
-                Prime 1-hectare parcel located in Matuu. Ideal for residential or
-                investment development with good road access and a growing neighborhood.
+                Premium 2-hectare parcel located in Diani.
+                Ideal for luxury villas, Airbnb development,
+                beach resort investment, or private residential use.
             </p>
         </div>
 
         <div class="card">
             <h3>Key Features</h3>
+
             <ul>
-                <li>Flat and ready for construction</li>
-                <li>Accessible via all-weather road</li>
-                <li>Water and electricity nearby</li>
-                <li>Secure and developing area</li>
-                <li>Ideal for subdivision or farming</li>
+                <li>2 Hectares Freehold Land</li>
+                <li>Flat and Ready for Development</li>
+                <li>Accessible Main Road Connection</li>
+                <li>Electricity & Water Nearby</li>
+                <li>Prime Tourism Investment Area</li>
+                <li>Suitable for Villas or Resort</li>
             </ul>
         </div>
 
         <div class="card">
             <h3>Land Details</h3>
+
             <p>
-                Total Size: <b>1 Hectare</b><br>
+                Total Size: <b>2 Hectares</b><br>
                 Ownership: Freehold<br>
-                Price: Ksh 3,800,000
+                Location: Diani, Kwale County<br>
+                Price: Ksh 7,000,000
             </p>
         </div>
 
-        <a href="tel:+254740531831" class="btn full">Contact Agent</a>
+        <a href="tel:+254740531831" class="btn full">
+            Contact Agent
+        </a>
 
     </div>
 
@@ -81,32 +101,47 @@
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
+
     <span onclick="closeLightbox()">✕</span>
+
     <img id="lightbox-img">
+
 </div>
 
 <!-- FLOAT -->
-<a href="tel:+254740531831" class="floating-contact">📞</a>
+<a href="tel:+254740531831" class="floating-contact">
+    📞
+</a>
 
 <script>
+
 const images = document.querySelectorAll('.gallery img');
+
 const lightbox = document.getElementById('lightbox');
+
 const lightboxImg = document.getElementById('lightbox-img');
 
 images.forEach(img => {
+
     img.onclick = () => {
+
         lightbox.style.display = 'flex';
+
         lightboxImg.src = img.src;
     };
+
 });
 
 function closeLightbox(){
+
     lightbox.style.display = 'none';
 }
 
 function goBack(){
+
     window.location.href = "index.html#featured";
 }
+
 </script>
 
 </body>

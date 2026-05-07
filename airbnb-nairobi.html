@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>2 Bedroom Airbnb - Nairobi</title>
+
+<link rel="stylesheet" href="airbnb.css">
+
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+
+    <img src="assets/living2.jpg" class="hero-img">
+
+    <div class="overlay"></div>
+
+    <button class="back-btn" onclick="goBack()">← Back</button>
+
+    <div class="hero-content">
+
+        <h1>Luxury Airbnb – Nairobi</h1>
+
+        <p class="price">Ksh 12,400 / Night</p>
+
+        <div class="hero-meta">
+            <span>🛏 2 Bedrooms</span>
+            <span>🛁 2 Bathrooms</span>
+            <span>🔥 Fireplace</span>
+            <span>🌇 Balcony View</span>
+        </div>
+
+        <a href="https://wa.me/254740531831" class="btn">
+            Book Stay
+        </a>
+
+    </div>
+
+</section>
+
+<!-- MAIN -->
+<section class="property-details">
+
+    <!-- GALLERY -->
+    <div class="gallery">
+
+        <img src="assets/living2.jpg">
+        <img src="assets/bedroom2.jpg">
+        <img src="assets/sbedroom2.jpg">
+        <img src="assets/kitchen2.jpg">
+        <img src="assets/dining2.jpg">
+        <img src="assets/balcony2.jpg">
+        <img src="assets/bathroom2.jpg">
+        <img src="assets/fireplace2.jpg">
+        <img src="assets/office2.jpg">
+
+    </div>
+
+    <!-- DETAILS -->
+    <div class="details">
+
+        <div class="card">
+            <h3>Property Overview</h3>
+
+            <p>
+                Premium fully furnished Airbnb located in Nairobi.
+                Features modern luxury interiors, spacious rooms,
+                fast Wi-Fi, smart TV, workspace, and a peaceful
+                private balcony perfect for short and long stays.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Features & Amenities</h3>
+
+            <ul>
+                <li>2 Fully Furnished Bedrooms</li>
+                <li>Modern Open Kitchen</li>
+                <li>Luxury Bathroom</li>
+                <li>Private Balcony</li>
+                <li>Dedicated Workspace</li>
+                <li>Smart TV + Netflix</li>
+                <li>High-Speed Wi-Fi</li>
+                <li>Secure Parking</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Location</h3>
+
+            <p>
+                Located in a secure and accessible neighborhood in Nairobi,
+                close to shopping malls, restaurants, nightlife, and business hubs.
+            </p>
+        </div>
+
+        <a href="tel:+254740531831" class="btn full">
+            Contact Host
+        </a>
+
+    </div>
+
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+
+    <span onclick="closeLightbox()">✕</span>
+
+    <img id="lightbox-img">
+
+</div>
+
+<!-- FLOAT -->
+<a href="tel:+254740531831" class="floating-contact">
+    📞
+</a>
+
+<script>
+
+const images = document.querySelectorAll('.gallery img');
+
+const lightbox = document.getElementById('lightbox');
+
+const lightboxImg = document.getElementById('lightbox-img');
+
+images.forEach(img => {
+
+    img.onclick = () => {
+
+        lightbox.style.display = 'flex';
+
+        lightboxImg.src = img.src;
+    };
+
+});
+
+function closeLightbox(){
+
+    lightbox.style.display = 'none';
+}
+
+function goBack(){
+
+    window.location.href = "index.html#featured";
+}
+
+</script>
+
+</body>
+</html>
