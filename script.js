@@ -640,3 +640,31 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+
+// ================= BUTTON CLICK SOUNDS + VIBRATION =================
+const clickSound = document.getElementById("clickSound");
+
+function feedback() {
+    // SOUND
+    if (clickSound) {
+        clickSound.currentTime = 0;
+        clickSound.play().catch(() => {});
+    }
+
+    // VIBRATION (mobile only)
+    if ("vibrate" in navigator) {
+        navigator.vibrate(20);
+    }
+}
+
+// SEARCH BUTTON
+const searchButton = document.getElementById("searchBtn");
+
+if (searchButton) {
+    searchButton.addEventListener("click", feedback);
+}
+
+// ALL MORE BUTTONS
+document.querySelectorAll(".more-btn").forEach(btn => {
+    btn.addEventListener("click", feedback);
+});
