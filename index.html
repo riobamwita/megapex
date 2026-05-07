@@ -555,12 +555,43 @@
         <h2>Contact Us</h2>
         <p>Use the form below to contact us!</p>
 
-        <input type="text" placeholder="Name">
-        <input type="email" placeholder="Email">
-        <input type="text" placeholder="Phone">
-        <textarea placeholder="Type your message..."></textarea>
+        <form id="contactForm">
 
-        <button>Send</button>
+            <!-- NAME -->
+            <input 
+                type="text" 
+                id="name"
+                placeholder="Name"
+                required
+            >
+
+            <!-- EMAIL -->
+            <input 
+                type="email" 
+                id="email"
+                placeholder="Email"
+                required
+            >
+
+            <!-- PHONE -->
+            <input 
+                type="tel" 
+                id="phone"
+                placeholder="Phone"
+                pattern="[0-9]{10}"
+                required
+            >
+
+            <!-- MESSAGE -->
+            <textarea 
+                id="message"
+                placeholder="Type your message..."
+                required
+            ></textarea>
+
+            <button type="submit">Send</button>
+
+        </form>
 
     </div>
 </div>

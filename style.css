@@ -438,6 +438,9 @@ body {
     pointer-events: none;
     transform: translateY(20px);
     transition: 0.3s ease;
+
+    z-index: 999;
+    cursor: pointer;
 }
 
 /* positions */
@@ -459,26 +462,86 @@ body {
 
 
 /* MODAL */
+/* MODAL BACKDROP */
 .contact-modal {
     position: fixed;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.6);
-    display: none;
-}
+    inset: 0;
 
-.contact-modal.active {
-    display: flex;
+    background: rgba(0,0,0,0.6);
+
+    display: none;
     justify-content: center;
     align-items: center;
+
+    z-index: 9999;
 }
 
+/* ACTIVE */
+.contact-modal.active {
+    display: flex;
+}
+
+/* MODAL BOX */
 .modal-content {
     background: #fff;
     color: #000;
+
+    width: 90%;
+    max-width: 420px;
+
     padding: 30px;
-    border-radius: 10px;
-    width: 320px;
+    border-radius: 14px;
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    animation: popupFade 0.3s ease;
+}
+
+/* CLOSE BUTTON */
+.close-modal {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* INPUTS */
+.modal-content input,
+.modal-content textarea {
+    width: 100%;
+    padding: 12px;
+
+    border-radius: 8px;
+    border: 1px solid #ccc;
+
+    font-family: inherit;
+}
+
+/* TEXTAREA */
+.modal-content textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* BUTTON */
+.modal-content button {
+    padding: 12px;
+    border: none;
+
+    border-radius: 30px;
+
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+
+    color: #fff;
+    font-weight: 600;
+
+    cursor: pointer;
 }
 
 /* FOOTER */
@@ -1391,7 +1454,40 @@ footer {
     opacity: 0.8;
 }
 
-.hide {
+.scroll-hide {
     opacity: 0;
     transition: 0.5s ease;
+}
+
+/* MOBILE MENU */
+@media (max-width: 768px) {
+
+    nav {
+        position: absolute;
+        top: 80px;
+        right: -100%;
+        width: 250px;
+        background: #111;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        transition: 0.4s;
+    }
+
+    nav.active {
+        right: 0;
+    }
+
+    .menu-toggle {
+        display: block;
+        font-size: 30px;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    /* Hide toggle when menu is open */
+    .menu-toggle.active {
+        opacity: 0;
+        pointer-events: none;
+    }
 }
