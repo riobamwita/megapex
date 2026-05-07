@@ -292,13 +292,26 @@ document.querySelectorAll(".location-card").forEach(card => {
 });
 
 
-// ================= MORE BUTTONS (FIXED LOGIC) =================
+let locationsExpanded = false;
 
-// 1. MORE LOCATIONS → ALWAYS COMING SOON
 document.querySelectorAll(".properties-section .more-btn").forEach(btn => {
     btn.addEventListener("click", (e) => {
         e.preventDefault();
-        showComingSoon();
+
+        const hiddenCard = document.querySelector(".hidden-location");
+
+        if (!hiddenCard) return;
+
+        // TOGGLE
+        locationsExpanded = !locationsExpanded;
+
+        if (locationsExpanded) {
+            hiddenCard.classList.add("show");
+            btn.textContent = "View Less";
+        } else {
+            hiddenCard.classList.remove("show");
+            btn.textContent = "More Locations";
+        }
     });
 });
 

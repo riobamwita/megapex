@@ -192,7 +192,7 @@ body {
 .search-box button {
     grid-column: span 4;
     padding: 14px;
-    border-radius: 8px;
+    border-radius: 30px;
     border: none;
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     color: #fff;
@@ -564,7 +564,7 @@ footer {
 .more-btn {
     padding: 14px 28px;
     border: none;
-    border-radius: 8px;
+    border-radius: 30px;
 
     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     color: #fff;
@@ -1356,4 +1356,13 @@ footer {
     .ad-strip::-webkit-scrollbar {
         display: none;
     }
+}
+
+.hidden-location {
+    display: none;
+}
+
+/* show it when explicitly unlocked */
+.hidden-location.show {
+    display: block;
 }
