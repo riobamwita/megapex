@@ -420,9 +420,31 @@ document.querySelectorAll(".photos-icon").forEach(icon => {
 
 const strips = document.querySelectorAll(".ad-strip, .gallery");
 
-strips.forEach(el => {
-    el.addEventListener("scroll", () => {
-        const hint = el.parentElement.querySelector(".scroll-hint");
-        if (hint) hint.classList.add("hide");
-    }, { once: true });
+strips.forEach(strip => {
+    const container = strip.closest(".ad-strip-section, .property-details, .section") 
+        || strip.parentElement;
+
+    const hint = container?.querySelector(".scroll-hint");
+
+    if (!hint) return;
+
+    let hidden = false;
+
+    const hideHint = () => {
+        if (hidden) return;
+        hidden = true;
+        hint.classList.add("hide");
+    };
+
+    // 1. scroll (desktop + touch drag)
+    strip.addEventListener("scroll", hideHint, { passive: true });
+
+    // 2. touch swipe start (mobile UX improvement)
+    strip.addEventListener("touchstart", hideHint, { passive: true });
+
+    // 3. mouse wheel (important for trackpads / desktop users)
+    strip.addEventListener("wheel", hideHint, { passive: true });
+
+    // 4. pointer interaction fallback (modern browsers)
+    strip.addEventListener("pointerdown", hideHint, { passive: true });
 });

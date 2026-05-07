@@ -664,9 +664,11 @@ footer {
 
 .ad-strip-section {
     padding: 10px 8%;
-    display: flex;
-    justify-content: center;
     overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* container */
@@ -678,23 +680,17 @@ footer {
     flex-wrap: wrap; /* allows neat alignment on smaller screens */
 }
 
-/* images (VERTICAL POSTER STYLE) */
 .ad-strip img {
-    width: 260px;   /* increased width */
+    width: 260px;
     height: 420px;
     object-fit: cover;
-
-    /* remove "framed card" feel */
-    border-radius: 0px;   /* ❌ no rounded edges */
-    box-shadow: none;     /* ❌ removes border-like shadow */
 
     opacity: 0;
     transform: translateX(140px);
 
-    transition: all 0.7s ease;
+    transition: 0.7s ease;
 }
 
-/* when visible (JS adds this class) */
 .ad-strip img.show {
     opacity: 1;
     transform: translateX(0);
@@ -1385,7 +1381,17 @@ footer {
     }
 }
 
-.scroll-hint.hide {
+.scroll-hint {
+    margin-top: -15px;
+    margin-bottom: 20px;
+
+    font-size: 13px;
+    color: #cfe7d9;
+
+    opacity: 0.8;
+}
+
+.hide {
     opacity: 0;
     transition: 0.5s ease;
 }

@@ -243,29 +243,44 @@ body{
     background:rgba(0,0,0,0.96);
 
     display:none;
-    align-items:center;
+    align-items:flex-start;   /* changed from center */
     justify-content:center;
 
     z-index:999;
-    padding:20px;
+    padding:40px 20px;
+
+    overflow-y:auto;          /* ✅ enables scrolling */
+    -webkit-overflow-scrolling:touch;
 }
 
+/* IMAGE WRAPPER BEHAVIOR */
 .lightbox img{
     max-width:100%;
-    max-height:90vh;
+    height:auto;
 
     border-radius:12px;
     object-fit:contain;
+
+    margin: auto;
+
+    /* prevents weird cutoff on large portraits */
+    display:block;
 }
 
+/* CLOSE BUTTON */
 .lightbox span{
-    position:absolute;
+    position:fixed;  /* better than absolute for scroll areas */
     top:18px;
     right:20px;
 
     font-size:32px;
     color:white;
     cursor:pointer;
+
+    z-index:1000;
+    background:rgba(0,0,0,0.4);
+    padding:4px 10px;
+    border-radius:8px;
 }
 
 /* ================= FLOAT BUTTON ================= */
@@ -403,13 +418,112 @@ body{
 .scroll-hint {
     font-size: 12px;
     color: var(--muted);
+
     text-align: center;
-    margin-top: 10px;
-    opacity: 0.8;
-    animation: fadeHint 2.5s infinite;
+    margin-top: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    opacity: 0.75;
+
+    animation: hintPulse 2.2s ease-in-out infinite;
 }
 
-@keyframes fadeHint {
-    0%,100% { opacity: 0.4; transform: translateX(0); }
-    50% { opacity: 1; transform: translateX(5px); }
+/* animated arrow cue */
+.scroll-hint::after {
+    content: "→";
+    color: var(--accent);
+    font-size: 14px;
+
+    animation: arrowMove 1.4s ease-in-out infinite;
+}
+
+/* subtle fade + float */
+@keyframes hintPulse {
+    0%, 100% {
+        opacity: 0.4;
+        transform: translateY(0);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-2px);
+    }
+}
+
+/* moving arrow to suggest swipe/scroll */
+@keyframes arrowMove {
+    0% {
+        transform: translateX(0);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translateX(6px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 0.5;
+    }
+}
+
+.scroll-hint {
+    font-size: 12px;
+    color: var(--muted);
+
+    text-align: center;
+    margin: 8px 0 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    opacity: 0.75;
+
+    transition: opacity 0.5s ease;
+    animation: hintPulse 2.2s ease-in-out infinite;
+}
+
+/* arrow cue */
+.scroll-hint::after {
+    content: "→";
+    color: var(--accent);
+    font-size: 14px;
+    animation: arrowMove 1.4s ease-in-out infinite;
+}
+
+/* HIDE STATE */
+.scroll-hint.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* animations */
+@keyframes hintPulse {
+    0%, 100% {
+        opacity: 0.4;
+        transform: translateY(0);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-2px);
+    }
+}
+
+@keyframes arrowMove {
+    0% {
+        transform: translateX(0);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translateX(6px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 0.5;
+    }
 }
