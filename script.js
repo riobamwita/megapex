@@ -364,3 +364,56 @@ document.querySelectorAll(".featured-card").forEach(card => {
     });
 
 });
+
+// ================= SHARE FUNCTION =================
+document.querySelectorAll(".share-icon").forEach(icon => {
+    icon.addEventListener("click", async (e) => {
+        e.stopPropagation(); // prevent card click navigation
+
+        const card = icon.closest(".featured-card");
+
+        const title = card.querySelector("h3")?.innerText || "Megapex Property";
+        const price = card.querySelector("p")?.innerText || "";
+        const link = card.dataset.link
+            ? window.location.origin + card.dataset.link
+            : window.location.href;
+
+        const shareData = {
+            title: title,
+            text: `${title} - ${price}`,
+            url: link
+        };
+
+        // 🌐 Modern phones (WhatsApp, native share, etc.)
+        if (navigator.share) {
+            try {
+                await navigator.share(shareData);
+            } catch (err) {
+                console.log("Share cancelled");
+            }
+        } 
+        // 📋 Fallback (desktop)
+        else {
+            try {
+                await navigator.clipboard.writeText(link);
+                alert("Link copied to clipboard!");
+            } catch {
+                alert("Copy failed");
+            }
+        }
+    });
+});
+
+// ================= PHOTOS ICON NAVIGATION =================
+document.querySelectorAll(".photos-icon").forEach(icon => {
+    icon.addEventListener("click", (e) => {
+        e.stopPropagation(); // prevents card click conflict
+
+        const link = icon.dataset.link;
+
+        if (!link) return;
+
+        // open property page and go to gallery
+        window.location.href = `${link}#gallery`;
+    });
+});
