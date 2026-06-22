@@ -67,11 +67,11 @@
 
   {
     "id": "nairobi-house",
-    "title": "House - Nairobi",
+    "title": "House - Buruburu",
     "shortTitle": "5 Bedroom House",
     "price": 135000,
     "formattedPrice": "KES 135,000/ Month",
-    "location": "Nairobi",
+    "location": "Buruburu",
     "type": "House",
     "deal": "Rent",
     "bedrooms": 5,
