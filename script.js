@@ -174,13 +174,14 @@ function fillSelect(id, values) {
 
 function resetCards() {
 
-document
-    .querySelectorAll(".property-card")
-    .forEach(card => {
+    document
+        .querySelectorAll(".property-card")
+        .forEach(card => {
 
-        card.style.display = "";
+            card.style.display = "";
+            card.classList.remove("hidden");
 
-    });
+        });
 
 }
 
@@ -193,6 +194,8 @@ if (!searchBtn || !clearBtn) return;
 
 searchBtn.addEventListener("click", () => {
 
+    filterActive = true;
+
     const type =
         document.getElementById("propertyType").value;
 
@@ -204,8 +207,6 @@ searchBtn.addEventListener("click", () => {
 
     const priceRange =
         document.getElementById("priceRange").value;
-
-    filterActive = true;
 
     let found = false;
 
@@ -282,6 +283,8 @@ searchBtn.addEventListener("click", () => {
 
 clearBtn.addEventListener("click", () => {
 
+    filterActive = false;
+
     document
         .querySelectorAll(".search-box select")
         .forEach(select => {
@@ -316,6 +319,8 @@ const clearBtn =
 if (!searchBtn || !clearBtn) return;
 
 searchBtn.addEventListener("click", () => {
+
+    filterActive = true;
 
     const type =
         document.getElementById("propertyTypeFilter").value;
@@ -499,34 +504,39 @@ setInterval(() => {
 
 function setupViewMore() {
 
-    const btn =
-        document.getElementById("viewMoreBtn");
+    const btn = document.getElementById("viewMoreBtn");
 
     if (!btn) return;
 
     let expanded =
-    sessionStorage.getItem("viewMoreExpanded") === "true";
+        sessionStorage.getItem("viewMoreExpanded") === "true";
 
     function limit() {
 
-    const width = window.innerWidth;
+        const width = window.innerWidth;
 
-    if(width <= 768){
-        return 4; // 2 × 2
+        if (width <= 768) return 4;
+        if (width <= 1200) return 6;
+
+        return 8;
     }
-
-    if(width <= 1200){
-        return 6; // 3 × 2
-    }
-
-    return 8; // 4 × 2
-}
 
     function update() {
 
-        const cards =
-            [...document.querySelectorAll(".property-card")]
-                .filter(card => card.style.display !== "none");
+        const cards = [
+            ...document.querySelectorAll(".property-card")
+        ].filter(card => card.style.display !== "none");
+
+        if (filterActive) {
+
+            cards.forEach(card => {
+                card.classList.remove("hidden");
+            });
+
+            btn.style.display = "none";
+
+            return;
+        }
 
         cards.forEach((card, index) => {
 
@@ -537,61 +547,48 @@ function setupViewMore() {
 
         });
 
-        if (filterActive) {
-
-    cards.forEach(card => {
-        card.classList.remove("hidden");
-    });
-
-    btn.style.display = "none";
-    return;
-}
-
-btn.style.display =
-    cards.length > limit()
-        ? "block"
-        : "none";
+        btn.style.display =
+            cards.length > limit()
+                ? "block"
+                : "none";
 
         btn.textContent =
             expanded
                 ? "View Less"
                 : "View More";
-
     }
+
+    updateViewMore = update;
 
     btn.addEventListener("click", () => {
 
-    expanded = !expanded;
+        expanded = !expanded;
 
-    sessionStorage.setItem(
-        "viewMoreExpanded",
-        expanded
-    );
+        sessionStorage.setItem(
+            "viewMoreExpanded",
+            expanded
+        );
+
+        update();
+
+        if (!expanded) {
+
+            setTimeout(() => {
+
+                btn.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+
+            }, 50);
+
+        }
+
+    });
 
     update();
 
-    if (!expanded) {
-
-        setTimeout(() => {
-
-            btn.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
-
-        }, 50);
-
-    }
-
-});
-
-    update();
-
-    window.addEventListener(
-        "resize",
-        update
-    );
-
+    window.addEventListener("resize", update);
 }
 
 const menuToggle = document.getElementById("menuToggle");
