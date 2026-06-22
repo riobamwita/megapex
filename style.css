@@ -511,7 +511,7 @@ section{
     backdrop-filter:blur(6px);
 
     padding:18px 22px;
-    border-radius:14px;
+    border-radius:none;
 
     width:fit-content;
     margin-top:25px;
