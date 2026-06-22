@@ -398,37 +398,38 @@ body {
 }
 
 .lightbox-track {
+    position: relative;
+    width: 100%;
+    height: 100vh;
     display: flex;
     align-items: center;
-
-    gap: 40px;
-
-    height: 100vh;
-
-    overflow-x: auto;
-    overflow-y: hidden;
-
-    padding: 0 12vw;
-
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0;
 }
 
 .lightbox-track img {
-    flex-shrink: 0;
-
-    max-width: 90vw;
+    position: absolute;
+    max-width: 85vw;
     max-height: 85vh;
-
     object-fit: contain;
 
-    scroll-snap-align: center;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.35s ease, transform 0.35s ease;
 
-    border-radius: 20px;
+    border-radius: 18px;
+    cursor: zoom-in;
+}
 
-    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+.lightbox-track img.active {
+    opacity: 1;
+    transform: scale(1);
+}
 
-    transition: 0.3s ease;
+.lightbox-track img.zoomed {
+    transform: scale(1.8);
+    cursor: zoom-out;
 }
 
 .lightbox-track img:hover {
@@ -752,7 +753,6 @@ body {
     }
 }
 
-/* Desktop only */
 @media (min-width: 769px){
 
     .property-details{

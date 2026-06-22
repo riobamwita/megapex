@@ -219,68 +219,54 @@ function setupLightbox() {
 }
 
 function openLightbox(index) {
-
     currentIndex = index;
 
-    const lightbox =
-        document.getElementById("lightbox");
-
-    const track =
-        lightbox.querySelector(".lightbox-track");
+    const lightbox = document.getElementById("lightbox");
+    const track = lightbox.querySelector(".lightbox-track");
 
     track.innerHTML = "";
 
-    galleryImages.forEach(src => {
-
-        const img =
-            document.createElement("img");
-
+    galleryImages.forEach((src, i) => {
+        const img = document.createElement("img");
         img.src = src;
+
+        if (i === currentIndex) img.classList.add("active");
+
+        // zoom toggle
+        img.addEventListener("click", (e) => {
+            e.stopPropagation();
+            img.classList.toggle("zoomed");
+        });
 
         track.appendChild(img);
     });
 
     lightbox.style.display = "block";
-
     updateLightbox();
 }
 
 function updateLightbox() {
+    const lightbox = document.getElementById("lightbox");
+    const track = lightbox.querySelector(".lightbox-track");
+    const counter = lightbox.querySelector(".lightbox-counter");
 
-    const lightbox =
-        document.getElementById("lightbox");
+    const images = track.querySelectorAll("img");
 
-    const track =
-        lightbox.querySelector(".lightbox-track");
+    images.forEach((img, i) => {
+        img.classList.toggle("active", i === currentIndex);
+        img.classList.remove("zoomed");
+    });
 
-    const counter =
-        lightbox.querySelector(".lightbox-counter");
-
-    track.children[currentIndex]
-        .scrollIntoView({
-            behavior: "smooth",
-            inline: "center"
-        });
-
-    counter.textContent =
-        `${currentIndex + 1} / ${galleryImages.length}`;
+    counter.textContent = `${currentIndex + 1} / ${galleryImages.length}`;
 }
 
 function nextImage() {
-
-    currentIndex =
-        (currentIndex + 1) %
-        galleryImages.length;
-
+    currentIndex = (currentIndex + 1) % galleryImages.length;
     updateLightbox();
 }
 
 function previousImage() {
-
-    currentIndex =
-        (currentIndex - 1 + galleryImages.length) %
-        galleryImages.length;
-
+    currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
     updateLightbox();
 }
 
