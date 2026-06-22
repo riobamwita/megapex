@@ -518,8 +518,8 @@ section{
 }
 
 .location-icon{
-    width:55px;
-    height:55px;
+    width:44px;
+    height:44px;
 
     background:#d4af37;
     border-radius:50%;
@@ -570,6 +570,19 @@ section{
     background:#d4af37;
     color:#111;
     animation:none;
+}
+
+.footer{
+    background:#ffffff;
+    color:#120d0d;
+    text-align:center;
+    padding:15px 10px;
+    font-size:.85rem;
+    border-top:1px solid rgba(255,255,255,.08);
+}
+
+.footer p{
+    margin:0;
 }
 
 .falling-images{
