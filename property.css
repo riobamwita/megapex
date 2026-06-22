@@ -539,6 +539,12 @@ body {
     html {
         font-size: 78%;
     }
+    
+    html,
+    body {
+    width: 100%;
+    overflow-x: hidden;
+    } 
 
     .back-btn {
         top: 15px;
