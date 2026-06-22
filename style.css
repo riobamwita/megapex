@@ -640,7 +640,7 @@ section{
 
 @media (max-width:768px){
 
-    .hero-content{
+    .hero-content h1{
     transform:translateX(-50px);
     }
     
