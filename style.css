@@ -511,7 +511,7 @@ section{
     backdrop-filter:blur(6px);
 
     padding:18px 22px;
-    border-radius:none;
+    border-radius:0;
 
     width:fit-content;
     margin-top:25px;
@@ -597,11 +597,12 @@ section{
 
 .falling-images img{
     position:absolute;
-    right:-180px;
-    width:280px;     
+    right:20px;
+    top:20px;
+    width:280px;
     height:180px;
     object-fit:cover;
-    opacity:0;
+    opacity:1;
 }
 
 .hero-ready .falling-images img{

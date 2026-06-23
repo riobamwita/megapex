@@ -164,31 +164,6 @@ function resetCards() {
 
 }
 
-clearBtn.addEventListener("click", () => {
-
-    filterActive = false;
-
-    document
-        .querySelectorAll(".search-box select")
-        .forEach(select => {
-
-            select.value = "";
-
-        });
-
-    resetCards();
-
-    toggleNoResults(true);
-
-    if (typeof updateViewMore === "function") {
-    updateViewMore();
-}
-
-searchBtn.style.display = "";
-    clearBtn.style.display = "none";
-
-});
-
 function setupPropertySearch() {
 
 const searchBtn =
@@ -624,3 +599,13 @@ function setupDynamicPropertyFilters() {
 
     updateFilters();
 }
+
+window.addEventListener("load", () => {
+    console.log("hero ready");
+
+    const hero = document.querySelector(".hero");
+
+    if (hero) {
+        hero.classList.add("hero-ready");
+    }
+});
