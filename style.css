@@ -716,6 +716,10 @@ section{
         background:#222;
     }
 
+    .offers{
+    padding-bottom:10px;
+    }
+
     .offers-header{
         display:flex;
         flex-direction:row;
