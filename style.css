@@ -602,6 +602,9 @@ section{
     height:180px;
     object-fit:cover;
     opacity:0;
+}
+
+.hero-ready .falling-images img{
     animation:dropOnce 1.6s forwards;
 }
 

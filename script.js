@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     
     setupDynamicPropertyFilters();
 
-    setupHeroSearch();
     setupPropertySearch();
     setupViewMore();
      
@@ -27,7 +26,6 @@ try {
     const response = await fetch("properties.json");
     properties = await response.json();
 
-    populateHeroFilters();
     populatePropertyFilters();
 
     renderProperties();
@@ -88,27 +86,6 @@ function renderProperties() {
     if (typeof updateViewMore === "function") {
         updateViewMore();
     }
-
-}
-
-function populateHeroFilters() {
-
-
-fillSelect(
-    "propertyType",
-    [...new Set(properties.map(p => p.type))]
-);
-
-fillSelect(
-    "location",
-    [...new Set(properties.map(p => p.location))]
-);
-
-fillSelect(
-    "dealType",
-    [...new Set(properties.map(p => p.deal))]
-);
-
 
 }
 
@@ -187,102 +164,6 @@ function resetCards() {
 
 }
 
-function setupHeroSearch() {
-
-const searchBtn = document.getElementById("searchBtn");
-const clearBtn = document.getElementById("clearBtn");
-
-if (!searchBtn || !clearBtn) return;
-
-searchBtn.addEventListener("click", () => {
-
-    filterActive = true;
-
-    const type =
-        document.getElementById("propertyType").value;
-
-    const location =
-        document.getElementById("location").value;
-
-    const deal =
-        document.getElementById("dealType").value;
-
-    const priceRange =
-        document.getElementById("priceRange").value;
-
-    let found = false;
-
-    document
-        .querySelectorAll(".property-card")
-        .forEach(card => {
-
-            let show = true;
-
-            if (type && card.dataset.type !== type)
-                show = false;
-
-            if (location && card.dataset.location !== location)
-                show = false;
-
-            if (deal && card.dataset.deal !== deal)
-                show = false;
-
-            if (priceRange) {
-
-                const property =
-                    properties.find(
-                        p => String(p.id) === card.dataset.id
-                    );
-
-                const price =
-                    property?.price || 0;
-
-                if (priceRange === "0-5000000" && price > 5000000)
-                    show = false;
-
-                if (priceRange === "5000000-10000000" &&
-                    (price < 5000000 || price > 10000000))
-                    show = false;
-
-                if (priceRange === "10000000-20000000" &&
-                    (price < 10000000 || price > 20000000))
-                    show = false;
-
-                if (priceRange === "20000000-50000000" &&
-                    (price < 20000000 || price > 50000000))
-                    show = false;
-
-                if (priceRange === "50000000+" &&
-                    price < 50000000)
-                    show = false;
-
-            }
-
-            card.style.display =
-                show ? "" : "none";
-
-            if (show)
-                found = true;
-
-        });
-
-    toggleNoResults(found);
-
-    if (typeof updateViewMore === "function") {
-    updateViewMore();
-    }
-
-    searchBtn.style.display = "none";
-    clearBtn.style.display = "";
-
-    document
-        .getElementById("properties")
-        .scrollIntoView({
-            behavior: "smooth"
-        });
-
-});
-
 clearBtn.addEventListener("click", () => {
 
     filterActive = false;
@@ -307,8 +188,6 @@ searchBtn.style.display = "";
     clearBtn.style.display = "none";
 
 });
-
-}
 
 function setupPropertySearch() {
 
