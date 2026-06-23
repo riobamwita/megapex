@@ -600,12 +600,19 @@ function setupDynamicPropertyFilters() {
     updateFilters();
 }
 
-window.addEventListener("load", () => {
-    console.log("hero ready");
-
+document.addEventListener("DOMContentLoaded", () => {
     const hero = document.querySelector(".hero");
 
-    if (hero) {
-        hero.classList.add("hero-ready");
-    }
+    if (!hero) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                hero.classList.add("hero-ready");
+                observer.disconnect();
+            }
+        });
+    }, { threshold: 0.2 });
+
+    observer.observe(hero);
 });

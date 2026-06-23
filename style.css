@@ -172,6 +172,7 @@ section{
     gap:15px;
     overflow-x:auto;
     scrollbar-width:none;
+    touch-action: pan-x;
 }
 
 .offers-grid::-webkit-scrollbar{
