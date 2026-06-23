@@ -753,9 +753,13 @@ section{
     margin-bottom:2px;
 }
 
+#properties .section-head{
+        margin-bottom:9px;
+    }
+
    .property-search{
     width:95%;
-    margin:0 auto 30px;
+    margin:0 auto 15px;
 
     display:flex;
     align-items:center;
@@ -789,6 +793,10 @@ section{
 
 .property-search select:last-of-type{
     border-right:none;
+}
+
+.properties{
+    padding-top:15px;
 }
 
     .property-grid{
